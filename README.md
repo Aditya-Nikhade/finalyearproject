@@ -1,7 +1,7 @@
-# Project Name
+# TradeX Application
 
 ## Description
-[Add your project description here]
+This repo contains the code to run the Hyperledger Fabric Project locally.
 
 ## Prerequisites
 ### System Requirements
@@ -20,23 +20,25 @@
 
 ### Additional Tools
 - cURL
-- jq (for JSON processing)
-- OpenSSL
-- Make (for running scripts)
+ Linux or Windows WSL for running the shell scripts and docker containers
 
-## Installation
-```bash
-# Clone the repository
-git clone [repository-url]
+## Installation Steps
+  - ## Step 1. Hyperledger Fabric ##
+    - The chaincode contains the logic for the trading platfrom. Kindly install it on peers using appopriate method or using the chaincodeLifecycle.sh script provided.
+    - Up the network using appropriate method.
 
-# Install dependencies for client application
-cd clientApp
-npm install
+  - ## Step 2. clientApp ##
+    -Description: This contains the server code which connects the frontend and backend. It also has a custom shell script which basically you have to run everytime the network is again up and running.
+    -Steps: 1. Go to the directory of the clientApp and run ./reset.sh
+            2. The custom shell script creates a new user identity into the wallet.
+            3. Please note that this server code connects us to the network through organization 1 peer 0 of test network. While using custom networks, use the network configuration accordingly.
+    -P.S. Run the shell script everytime the network restarts.
 
-# Install dependencies for integrated-tradex
-cd ../integrated-tradex
-npm install
-```
+  - ## Step 3. Integrated TradeX ##
+    -Description: This is the frontend part of the Integrated TradeX. In this the login functionality is mocked. You can enter any email password to enter to the platform. The required autentication part can be                     looked at during production mode.
+    -Steps: 1. Please go to the directory of Integrated TradeX and do npm i to install required dependencies.
+            2. Once the server is up and running and the Hyperledger Network is up and running, we can do "npm run dev" to start the frontend adn you can view the results on the webpage at localhost:5173
+    
 
 ## Project Structure
 - `clientApp/` - Backend application with Hyperledger Fabric integration
@@ -45,12 +47,3 @@ npm install
   - Contains property-app chaincode
 - `integrated-tradex/` - Frontend application
   - React-based UI with Tailwind CSS
-
-## Usage
-[Add usage instructions]
-
-## Contributing
-[Add contribution guidelines]
-
-## License
-[Add license information] 
